@@ -14,18 +14,9 @@ model User {
   code             String       @unique @db.VarChar(20)
   createdAt        DateTime     @default(now())
   updatedAt        DateTime     @updatedAt
-  Session          Session[]
   WantedPokemon    WantedPokemon[]
   AvailablePokemon AvailablePokemon[]
-}
-
-model Session {
-  id        Int      @id @default(autoincrement())
-  userId    Int
-  User      User     @relation(fields: [userId], references: [id])
-  token     String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  Trade            Trade[]
 }
 
 model Pokemon {
@@ -71,7 +62,6 @@ model Trade {
   status             TradeStatus
   createdAt          DateTime     @default(now())
   updatedAt          DateTime     @updatedAt
-  Payment            Payment[]
 }
 
 enum TradeStatus {
