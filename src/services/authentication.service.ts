@@ -1,9 +1,8 @@
-import { duplicatedCodeError, duplicatedNicknameError } from '@/errors';
-import { invalidCredentialsError } from '@/errors/invalidCredentialsError';
+import { duplicatedCodeError, duplicatedNicknameError, invalidCredentialsError } from '@/errors';
 import userRepository from '@/repositories/user.repository';
 import { User } from '@prisma/client';
 import bcrypt from 'bcrypt';
-import jwt from "jsonwebtoken";
+import jwt from 'jsonwebtoken';
 
 export async function createUser({ nickname, code, password }: CreateUserParams): Promise<User> {
   await validateUniqueNicknameOrFail(nickname);
@@ -32,19 +31,16 @@ async function validateUniqueCodeOrFail(code: string) {
 
 export type CreateUserParams = Omit<User, 'id' | 'createdAt' | 'updatedAt'>;
 
-
-
-
 async function signIn(params: SignInParams): Promise<SignInResult> {
   const { nickname, password } = params;
 
   const user = await getUserOrFail(nickname);
 
   await validatePasswordOrFail(password, user.password);
-  const token = jwt.sign({userId: user.id}, process.env.JWT_SECRET);
+  const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET);
 
   return {
-    user: {id:user.id,nickname:user.nickname,code:user.code},
+    user: { id: user.id, nickname: user.nickname, code: user.code },
     token,
   };
 }
@@ -61,15 +57,15 @@ async function validatePasswordOrFail(password: string, userPassword: string) {
   if (!isPasswordValid) throw invalidCredentialsError();
 }
 
-export type SignInParams = Pick<User, "nickname" | "password">;
+export type SignInParams = Pick<User, 'nickname' | 'password'>;
 
 type SignInResult = {
-  user: Pick<User, "id" | "nickname" | "code">;
+  user: Pick<User, 'id' | 'nickname' | 'code'>;
   token: string;
 };
 
 const authenticationService = {
-  signIn,  
+  signIn,
   createUser,
 };
 

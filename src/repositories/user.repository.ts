@@ -1,5 +1,5 @@
-import { prisma } from "@/config";
-import { Prisma, User } from "@prisma/client";
+import { prisma } from '@/config';
+import { Prisma, User } from '@prisma/client';
 
 async function findByNickname(nickname: string): Promise<User> {
   return await prisma.user.findFirst({
@@ -8,10 +8,9 @@ async function findByNickname(nickname: string): Promise<User> {
     },
   });
 }
-async function findByCode(code: string) {  
-  return prisma.user.findUnique({where:{code}});
+async function findByCode(code: string) {
+  return prisma.user.findUnique({ where: { code } });
 }
-
 
 async function create(data: Prisma.UserUncheckedCreateInput) {
   return prisma.user.create({
