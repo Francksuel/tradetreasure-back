@@ -1,15 +1,15 @@
 import { AuthenticatedRequest } from '@/middlewares/authentication-middleware';
-import wantedItemService from '@/services/wantedItem.service';
+import availableItemService from '@/services/availableItem.service';
 import { Response } from 'express';
 import httpStatus from 'http-status';
 
-export async function postWantedItem(req: AuthenticatedRequest, res: Response) {
+export async function postAvailableItem(req: AuthenticatedRequest, res: Response) {
   const { userId } = req;
   const { pokemonId } = req.body;
   try {
-    const wantedItem = await wantedItemService.createWantedItem(userId, Number(pokemonId));
+    const availableItem = await availableItemService.createAvailableItem(userId, Number(pokemonId));
 
-    res.send(wantedItem);
+    res.send(availableItem);
   } catch (error) {
     res.status(httpStatus.BAD_REQUEST).send(error);
   }

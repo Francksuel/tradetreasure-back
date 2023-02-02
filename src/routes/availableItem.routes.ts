@@ -1,11 +1,11 @@
-import { postWantedItem } from '@/controllers/wantedItem.controller';
+import { postAvailableItem } from '@/controllers/availableItem.controller';
 import { authenticateToken } from '@/middlewares/authentication-middleware';
 import { validateBody } from '@/middlewares/validation.middleware';
 import { itemRequestSchema } from '@/schemas/itemRequest.schema';
 import { Router } from 'express';
 
-const wantedItemRouter = Router();
+const availableItemRouter = Router();
 
-wantedItemRouter.post('/', authenticateToken, validateBody(itemRequestSchema), postWantedItem);
+availableItemRouter.post('/', authenticateToken, validateBody(itemRequestSchema), postAvailableItem);
 
-export { wantedItemRouter };
+export { availableItemRouter };
