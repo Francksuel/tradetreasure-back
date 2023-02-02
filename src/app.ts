@@ -3,8 +3,9 @@ import 'express-async-errors';
 import cors from 'cors';
 import { authenticationRouter } from './routes/authentication.routes';
 import { connectDb, disconnectDb, loadEnv } from './config';
-import { itensRouter } from './routes/item.routes';
+import { itemRouter } from './routes/item.routes';
 import { populatePokemons } from './utils/populatePokemons';
+import { wantedItemRouter } from './routes/wantedItem.routes';
 
 loadEnv();
 
@@ -14,7 +15,8 @@ app
   .use(express.json())
   .get('/health', async (req, res) => res.send('OK!'))
   .use('/auth', authenticationRouter)
-  .use('/itens', itensRouter);
+  .use('/item', itemRouter)
+  .use('/wanted', wantedItemRouter);
 
 export async function init(): Promise<Express> {
   connectDb();

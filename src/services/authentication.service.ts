@@ -29,7 +29,7 @@ async function validateUniqueCodeOrFail(code: string) {
   }
 }
 
-export type CreateUserParams = Omit<User, 'id' | 'createdAt' | 'updatedAt'>;
+export type CreateUserParams = Pick<User, 'nickname' | 'code' | 'password'>;
 
 async function signIn(params: SignInParams): Promise<SignInResult> {
   const { nickname, password } = params;

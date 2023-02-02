@@ -33,7 +33,7 @@ model WantedPokemon {
   id            Int         @id @default(autoincrement())
   Pokemon       Pokemon    @relation(fields: [pokemonId], references: [id])
   pokemonId     Int
-  userId        Int         @unique
+  userId        Int         
   User          User        @relation(fields: [userId], references: [id])
   createdAt     DateTime    @default(now())
   updatedAt     DateTime    @updatedAt
@@ -44,7 +44,7 @@ model AvailablePokemon {
   id            Int         @id @default(autoincrement())
   Pokemon       Pokemon    @relation(fields: [pokemonId], references: [id])
   pokemonId     Int
-  userId        Int         @unique
+  userId        Int         
   User          User        @relation(fields: [userId], references: [id])
   createdAt     DateTime    @default(now())
   updatedAt     DateTime    @updatedAt

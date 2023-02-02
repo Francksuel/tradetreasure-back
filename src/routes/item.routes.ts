@@ -2,8 +2,8 @@ import { getItens } from '@/controllers/itens.controller';
 
 import { Router } from 'express';
 
-const itensRouter = Router();
+const itemRouter = Router();
 
-itensRouter.get('/', getItens);
+itemRouter.get('/', getItens);
 
-export { itensRouter };
+export { itemRouter };
