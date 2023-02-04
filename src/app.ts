@@ -3,7 +3,7 @@ import 'express-async-errors';
 import cors from 'cors';
 import { connectDb, disconnectDb, loadEnv } from './config';
 import { populatePokemons } from './utils/populatePokemons';
-import { authenticationRouter, availableItemRouter, itemRouter, wantedItemRouter } from './routes';
+import { authenticationRouter, availableItemRouter, itemRouter, tradeRouter, wantedItemRouter } from './routes';
 
 loadEnv();
 
@@ -15,7 +15,8 @@ app
   .use('/auth', authenticationRouter)
   .use('/item', itemRouter)
   .use('/wanted', wantedItemRouter)
-  .use('/available', availableItemRouter);
+  .use('/available', availableItemRouter)
+  .use('/trade', tradeRouter);
 
 export async function init(): Promise<Express> {
   connectDb();

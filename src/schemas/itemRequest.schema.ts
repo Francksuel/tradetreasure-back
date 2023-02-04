@@ -1,5 +1,5 @@
-import Joi from "joi";
+import Joi from 'joi';
 
-export const itemRequestSchema = Joi.object<{pokemonId: number}>({
-  pokemonId: Joi.number().required(),  
+export const itemRequestSchema = Joi.object<{ pokemonId: number }>({
+  pokemonId: Joi.number().required(),
 });

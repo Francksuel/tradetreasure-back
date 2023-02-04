@@ -1,14 +1,23 @@
-import { prisma } from "@/config";
-import { Prisma } from "@prisma/client";
+import { prisma } from '@/config';
+import { Prisma } from '@prisma/client';
 
 async function create(data: Prisma.AvailablePokemonUncheckedCreateInput) {
-    return prisma.availablePokemon.create({
-      data,
-    });
-  }
+  return prisma.availablePokemon.create({
+    data,
+  });
+}
 
-  const availableItemRepository = {
-    create,
-  };
-  
-  export default availableItemRepository;
+async function listByUserId(userId: number) {
+  return prisma.availablePokemon.findMany({
+    where: {
+      userId,
+    },
+  });
+}
+
+const availableItemRepository = {
+  create,
+  listByUserId,
+};
+
+export default availableItemRepository;
