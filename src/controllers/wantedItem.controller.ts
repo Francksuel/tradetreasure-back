@@ -14,3 +14,15 @@ export async function postWantedItem(req: AuthenticatedRequest, res: Response) {
     res.status(httpStatus.BAD_REQUEST).send(error);
   }
 }
+
+export async function getWantedItens(req: AuthenticatedRequest, res: Response) {
+  const { userId } = req;
+
+  try {
+    const wantedItem = await wantedItemService.listWantedItens(userId);
+
+    res.send(wantedItem);
+  } catch (error) {
+    res.status(httpStatus.BAD_REQUEST).send(error);
+  }
+}

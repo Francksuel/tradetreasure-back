@@ -9,8 +9,14 @@ async function createWantedItem(userId: number, pokemonId: number) {
   return wantedItem;
 }
 
+async function listWantedItens(userId: number) {
+  const wantedItem = await wantedItemRepository.listByUserId(userId);
+  return wantedItem;
+}
+
 const wantedItemService = {
   createWantedItem,
+  listWantedItens
 };
 
 export default wantedItemService;
