@@ -14,3 +14,15 @@ export async function postAvailableItem(req: AuthenticatedRequest, res: Response
     res.status(httpStatus.BAD_REQUEST).send(error);
   }
 }
+
+export async function getAvailableItens(req: AuthenticatedRequest, res: Response) {
+  const { userId } = req;
+
+  try {
+    const availableItem = await availableItemService.listAvailableItens(userId);
+
+    res.send(availableItem);
+  } catch (error) {
+    res.status(httpStatus.BAD_REQUEST).send(error);
+  }
+}

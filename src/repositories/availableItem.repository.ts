@@ -11,6 +11,11 @@ async function listByUserId(userId: number) {
   return prisma.availablePokemon.findMany({
     where: {
       userId,
+      AND: { isTraded: false },
+    },
+    include: {
+      Pokemon: true,
+      User:true,
     },
   });
 }
