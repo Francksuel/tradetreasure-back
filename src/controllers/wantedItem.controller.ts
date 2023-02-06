@@ -26,3 +26,15 @@ export async function getWantedItens(req: AuthenticatedRequest, res: Response) {
     res.status(httpStatus.BAD_REQUEST).send(error);
   }
 }
+
+export async function deleteWantedItem(req: AuthenticatedRequest, res: Response) {  
+  const {itemId} = req.params as Record<string, string>;
+
+  try {
+    await wantedItemService.deleteWantedItem(Number(itemId));
+
+    res.send('Item deleted');
+  } catch (error) {
+    res.status(httpStatus.BAD_REQUEST).send(error);
+  }
+}

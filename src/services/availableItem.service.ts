@@ -14,9 +14,14 @@ async function listAvailableItens(userId: number) {
   return availableItem;
 }
 
+async function deleteAvailableItem(availableItemId: number) {
+  return await availableItemRepository.deleteByItemId(availableItemId);  
+}
+
 const availableItemService = {
   createAvailableItem,
   listAvailableItens,
+  deleteAvailableItem,
 };
 
 export default availableItemService;

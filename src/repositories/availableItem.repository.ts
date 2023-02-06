@@ -20,9 +20,18 @@ async function listByUserId(userId: number) {
   });
 }
 
+async function deleteByItemId(availableItemId: number) {
+  return prisma.availablePokemon.delete({
+    where: {  
+      id: availableItemId,   
+    }   
+  });
+}
+
 const availableItemRepository = {
   create,
   listByUserId,
+  deleteByItemId,
 };
 
 export default availableItemRepository;

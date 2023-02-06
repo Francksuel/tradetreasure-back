@@ -32,10 +32,19 @@ async function listByUserId(userId: number) {
   });
 }
 
+async function deleteByItemId(wantedItemId: number) {
+  return prisma.wantedPokemon.delete({
+    where: {  
+      id: wantedItemId,   
+    }   
+  });
+}
+
 const wantedItemRepository = {
   create,
   findByItemId,
   listByUserId,
+  deleteByItemId,
 };
 
 export default wantedItemRepository;

@@ -14,9 +14,14 @@ async function listWantedItens(userId: number) {
   return wantedItem;
 }
 
+async function deleteWantedItem(wantedItemId: number) {
+  return await wantedItemRepository.deleteByItemId(wantedItemId);  
+}
+
 const wantedItemService = {
   createWantedItem,
-  listWantedItens
+  listWantedItens,
+  deleteWantedItem
 };
 
 export default wantedItemService;
